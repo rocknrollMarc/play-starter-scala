@@ -1,15 +1,28 @@
-@(title: String)(content: Html)
+@(content: Html)
 
-<!DOCTYPE html>
+@style(asset: String) = {
+    <link rel="stylesheet" href="@routes.Assets.at(asset)">
+}
 
-<html>
+<!DOCTYPE HTML>
+  <html>
     <head>
-        <title>@title</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+      <title>Play Framework Starter Guide</title>
+      @style("bootstrap/css/bootstrap.css")
+      @style("bootstrap/css/bootstrap-responsive.css")
+      @style("stylesheet/main.css")
     </head>
     <body>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="/">Phonebook</a>
+          </div>
+        </div>
+      </div>
+      <div class="container">
         @content
+      </div>
     </body>
-</html>
+  </html>
+

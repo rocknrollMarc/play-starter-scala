@@ -4,6 +4,10 @@ import play.api._
 import play.api.mvc._
 import play.api.data.Forms._
 import play.api.data._
+
+// substitute class name !!!
+import models.{Entries => DAO}
+
 /** Uncomment the following lines as needed **/
 /**
 import play.api.Play.current
@@ -19,9 +23,15 @@ import play.api.libs.json._
 
 object Entries extends Controller {
 
-  def list(filter: String) = TODO
+  def list(filter: String) = Action {
+    val entries = DAO.findByName(filter.trim)
+    Ok(views.html.index(entries))
+  }
 
-  def remove(id: Long) = TODO
+  def remove(id: Long) = Action {
+    DAO.delete(id)
+    Redirect(routes.Entries.list())
+  }
 
   def edit(id: Long) = TODO
 
