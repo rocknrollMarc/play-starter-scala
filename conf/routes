@@ -5,5 +5,11 @@
 # Home page
 GET     /                           controllers.Application.index
 
+GET     /entries                    controllers.Entries.list(filter ?= "")
+GET     /entries/new                controllers.Entries.add
+GET     /entries/:id                controllers.Entries.edit(id: Long)
+POST    /entries/:id/remove         controlles.Entries.remove(id: Long)
+POST    /entries                    controllers.Entries.save
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
